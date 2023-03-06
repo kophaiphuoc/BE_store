@@ -778,6 +778,7 @@ const AccountStoreRegister = {
       }
     });
   }
+  
 };
 const AccountStoreLogin = {
   checkLogin: async (email, password) => {
@@ -808,5 +809,7 @@ const AccountStoreLogin = {
     }
   }
 };
-
+exports.getAllStores = async () => {
+  return await AccountStore.find();
+}
 module.exports = { AccountStoreRegister, AccountStoreLogin };

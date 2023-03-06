@@ -3,7 +3,7 @@ const { AccountStore } = require('../models/accounts_models');
 const { emailOtp } = require('../models/emailotp_models');
 const bcrypt = require("bcrypt");
 const randomstring = require('randomstring');
-
+const accounts_service = require("../services/accounts_service");
 const account_controllers = {
     sendOtpEmail: async (req, res) => {
         try {
@@ -105,6 +105,35 @@ const account_controllers = {
                 message:"lỗi hệ thống"
             })
        }
+    },
+    getStores : async () => {
+        try {
+            let stores = await accounts_service.getAllStores();
+            stores = stores.map((item) => {
+                item = {
+                    _id: item._id,
+                    nameStore: item.nameStore,
+                    emailStore: item.emailStore,
+                    passStore: item.passStore,
+                    starStore: item.starStore,
+                    phoneStore: item.phoneStore,
+                    addressStore: item.addressStore,
+                    idProductStore: item.idProductStore,
+                    idServiceStore: item.idServiceStore,
+                    idpetStore: item.idpetStore,
+                    otpMailStore: item.otpMailStore,
+                    avtStore: item.avtStore,
+                    descriptionStore: item.descriptionStore,
+                    socketId: item.socketId,
+                    tokenFCM: item.tokenFCM
+                }
+                return item;
+            })
+            return stores;
+        } catch (error) {
+            console.log(error)
+            return false;
+        }
     }
 }
 
