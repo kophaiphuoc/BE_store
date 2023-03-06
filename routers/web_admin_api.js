@@ -49,7 +49,7 @@ router.get("/stores", async function (req, res, next) {
         res.render("stores", { stores: data });
       });
   } else {
-    const data = await account_controllers.getStores();
+    const data = await account_controllers.getAll();
     const stores = data.map((c)=>{
       c={
         ...c,

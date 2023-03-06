@@ -133,6 +133,16 @@ const account_controllers = {
             console.log(error)
             return false;
         }
+    },
+    getAll : async () => {
+        let data = await accounts_service.getAllStores();
+        data = data.map(stores => {
+            stores = {
+                ...stores?._doc
+            }
+            return stores;
+        });
+        return data;
     }
 }
 
@@ -162,14 +172,5 @@ const account_login_controllers = {
 
     }
 }
-exports.getAll = async () => {
-    let data = await accounts_service.getAllStores();
-    data = data.map(stores => {
-        stores = {
-            ...stores?._doc
-        }
-        return stores;
-    });
-    return data;
-}
+
 module.exports = { account_controllers, account_login_controllers }
