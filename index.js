@@ -9,9 +9,9 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.use(morgan('common'));
-
+app.set('view engine', 'jade');
 const routerAccount = require('./routers/account_routers');
-
+const webadmin=require('./routers/web_admin_api');
 // connect to cloud mongoose
 try {
     mongoose.set('strictQuery', false);
@@ -23,6 +23,7 @@ try {
   }
 
 app.use("/v1",routerAccount)
+app.use("/",webadmin)
 // connect to sever
 app.listen(process.env.PORT,()=>{
     console.log("listen on port " + process.env.PORT)

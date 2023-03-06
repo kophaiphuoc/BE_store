@@ -1,5 +1,5 @@
 const orderModel = require('../models/orders_model')
-const { enumStatusOrder } = require('../../utils/constants');
+const { enumStatusOrder } = require('../utils/constants');
 
 exports.getAll = async () => {
     const o = await orderModel.find().populate(['user_id']).sort({ updatedAt: -1 });

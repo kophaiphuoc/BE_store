@@ -4,11 +4,11 @@ var router = express.Router();
 const upload = require("../utils/upload");
 
 const customerController = require("../controllers/customers_controller");
-const account_controllers = require("../controllers/account_controllers")
+const account_controllers = require("../controllers/account_controllers");
 const accounts_models = require("../models/accounts_models");
 const customerModel = require("../models/customers_model");
-
-const orderController = require("../components/OrderController");
+const account_controller = require("../controllers/account_controllers");
+const orderController = require("../controllers/OrderController");
 /* Web Admin. */
 router.get("/login", function (req, res, next) {
   res.render("login");

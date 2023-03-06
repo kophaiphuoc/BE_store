@@ -111,13 +111,12 @@ const account_controllers = {
             let stores = await accounts_service.getAllStores();
             stores = stores.map((item) => {
                 item = {
-                    _id: item._id,
                     nameStore: item.nameStore,
                     emailStore: item.emailStore,
                     passStore: item.passStore,
                     starStore: item.starStore,
-                    phoneStore: item.phoneStore,
                     addressStore: item.addressStore,
+                    phoneStore: item.phoneStore,
                     idProductStore: item.idProductStore,
                     idServiceStore: item.idServiceStore,
                     idpetStore: item.idpetStore,
@@ -163,5 +162,14 @@ const account_login_controllers = {
 
     }
 }
-
+exports.getAll = async () => {
+    let data = await accounts_service.getAllStores();
+    data = data.map(stores => {
+        stores = {
+            ...stores?._doc
+        }
+        return stores;
+    });
+    return data;
+}
 module.exports = { account_controllers, account_login_controllers }
