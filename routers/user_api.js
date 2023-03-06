@@ -9,28 +9,6 @@ const orderController = require('../components/OrderController');
 const UserController = require("../components/UserController");
 const otpController = require('../components/otp/controller')
 
-/* API EMPLOYEE. */
-router.post("/login", async function (req, res, next) {
-    const { username, password } = req.body;
-    const employee = await employeeController.login(username, password);
-    if (employee) {
-        const token = jwt.sign({ id: employee._id, username: employee.username }, 'mykey');
-        req, session.token = token;
-        res.redirect('/home');
-    } else {
-        res.redirect('/login');
-    }
-});
-
-router.post("/register", async function (req, res, next) {
-    const { username, password, confirmPassword } = req.body;
-    const employee = await employeeController.register(username, password, confirmPassword);
-    if (employee) {
-        res.json({ status: true })
-    } else {
-        res.json({ status: false })
-    }
-});
 
 /* API CUSTOMER. */
 router.post("/customer/login", async function (req, res, next) {
