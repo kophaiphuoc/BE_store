@@ -87,7 +87,16 @@ router.get("/customers/get-all", async function (req, res, next) {
       res.json(users);
     })
     .catch((error) => res.json(error));
-}); //get all for thong ke
+});
+router.get("/stores/get-all", async function (req, res, next) {
+  await account_controllers
+    .getStores()
+    .then((stores) => {
+      res.json(stores);
+    })
+    .catch((error) => res.json(error));
+});
+//get all for thong ke
 
 
 //format
